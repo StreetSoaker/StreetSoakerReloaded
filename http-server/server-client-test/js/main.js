@@ -3,7 +3,7 @@ socket.on('connect', function () {
 	socket.send('Hello back!');
 
 	socket.on('time', function(data) {
-		console.log('Time: '+data);
+		console.log(data);
 	});
 
 

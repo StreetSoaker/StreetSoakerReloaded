@@ -1,21 +1,33 @@
-var io = require('socket.io').listen(8080);
-var gamefile = require('./modules/game.js');
-var games = [];
-//console.log(baseInfo);
+var io          = require('socket.io').listen(8080);
+var gamefile    = require('./modules/game.js');
+var game        = new Array();
 io.sockets.on('connection', function (socket) {
-	var id = new Date().getTime();
-	var game = new gamefile.game();
-	var uniqueGame = game.startGame(id, 0, 0, 0, "Test game name", 3);
-    games[id] = uniqueGame;
-    socket.set('gameID', id);
-    console.log(game);
-    
-    socket.on('getGameTime', function() {
-    	var time = socket.get('gameID');
-    	socket.emit('time', time);
+    // Generate unique ID
+	var gameID     = new Date().getTime();
+
+    // Make new game and save it
+	game[socket.id]  = new gamefile.game(gameID);
+
+
+	// Add info to the game
+    game[socket.id].configGame(0, 0, 0, Date(), 3);
+
+
+
+    //Get the playTime of the game if the gameID is set
+    socket.on('getPlayTime', function() {
+        var playTime = game[socket.id].playTime;
+        socket.emit('time', playTime);
     });
 
-    socket.on('clearGameTime', function() {
-    	var time = socket.get('game').clearInterval();
+
+
+
+
+    /*
+     * NEVER USE THIS IN THE REAL APP
+     */
+    socket.on('clearPlayTime', function() {
+    	game[socket.id].clearPlayTime();
     });
 });

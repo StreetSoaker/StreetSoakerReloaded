@@ -1,30 +1,40 @@
-exports.game = function() {
+exports.game = function(gameID) {
 	this_ = this;
 
-	this.id 		= 0;
-	this.lat 		= 0;
-	this.long 		= 0;
-	this.playTime 	= 0;
-	this.name		= '';
-	this.gamemode	= 1;
-	this.interval	= 0;
+	this.id 				= gameID;
+	this.lat 				= 0;
+	this.long 				= 0;
+	this.playTime 			= 0;
+	this.name				= '';
+	this.gamemode			= 1;
+	this.playTimeInterval	= null;
+}
 
-	this.startGame = function(id, name, lat, long, name, gamemode) {
-		this_.id 		= id;
-		this_.lat 		= lat;
-		this_.long 		= long;
-		this_.name 		= name;
-		this_.gamemode 	= gamemode;
 
-		// Start Playtime
-		this.interval = setInterval(function() {
-			this_.playTime++;
-			console.log('Play Time: '+ this_.playTime);
-		}, 1000);
-	}
+exports.game.prototype.configGame = function(name, lat, long, name, gamemode) {
+	this_ 			= this;
+	this.lat 		= lat;
+	this.long 		= long;
+	this.name 		= String(name);
+	this.gamemode 	= gamemode;
+	this.startGame();
+}
 
-	this.clearInterval = function() {
-		clearInterval(this_.interval);
-		this_.playTime = 0;
-	}
+exports.game.prototype.addVal = function (value) {
+	this.playTime = this.playTime+value;
+	console.log(this.playTime);
+}
+
+// Start Playtime
+exports.game.prototype.startGame = function() {
+	this.playTimeInterval = setInterval(function() {
+		//exports.game.playTime++;
+		exports.game.prototype.addVal(1);
+	}, 1000);
+}
+
+
+exports.game.prototype.clearPlayTime = function() {
+	clearInterval(this.playTimeInterval);
+	this.playTime = 0;
 }
