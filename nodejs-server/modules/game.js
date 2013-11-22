@@ -15,14 +15,16 @@ exports.game = function() {
 		this_.long 		= long;
 		this_.name 		= name;
 		this_.gamemode 	= gamemode;
+
+		// Start Playtime
+		this.interval = setInterval(function() {
+			this_.playTime++;
+			console.log('Play Time: '+ this_.playTime);
+		}, 1000);
 	}
 
 	this.clearInterval = function() {
 		clearInterval(this_.interval);
-		this_.interval = 0;
+		this_.playTime = 0;
 	}
-
-	this.interval = setInterval(function() {
-		this_.interval++;
-	}, 1000);
 }
