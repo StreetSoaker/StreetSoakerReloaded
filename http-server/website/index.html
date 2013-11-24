@@ -1,13 +1,60 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Client for Server - Testing Socket.IO</title>
-	<script src="js/jquery-1.9.1.js"></script>
-	<script src="http://146.185.148.10:8080/socket.io/socket.io.js"></script>
-	<script src="js/main.js"></script>
+    <title>StreetSoaker > Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Css -->
+    <link href="css/bootstrap.min.css"          rel="stylesheet" />
+    <!--<link href="css/bootstrap-responsive.css"   rel="stylesheet" />-->
+    <link href="css/normalize.css"              rel="stylesheet" />
+    <link href="css/fonts.css"                   rel="stylesheet" />
+    <link href="css/core.css"                   rel="stylesheet" />
+    <!-- Javascript -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            function hcenter(){
+                var win_left = $(window).width() / 2;
+                var logo_left = $('.loadingLogo').width() / 2;
+                var loading_left = $('.loading').width() / 2;
+                
+                var logo_mid = win_left - logo_left;
+                var loading_mid = win_left - loading_left;
+                
+                $('.loadingLogo').css({'left' : logo_mid+'px',});
+                $('.loading').css({'left' : loading_mid+'px',});    
+            }
+            function vcenter(){
+                var win_top = $(window).height() / 2;
+                var loading_top = $('#loading').height() / 2;
+                
+                var loading_mid = win_top - loading_top;
+                
+                $('#loading').css({'position':'relative','top' : loading_mid+'px'});
+            }
+            $('img').load(function(){
+                hcenter();
+                vcenter();
+                
+                $(window).resize(function(){
+                    hcenter();    
+                    vcenter();
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-	Test
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div id="loading">
+                    <img class="loadingLogo" src="img/loadingpage/loading_logo.png" alt="StreetSoaker Logo" />
+                    <div class="loading"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
