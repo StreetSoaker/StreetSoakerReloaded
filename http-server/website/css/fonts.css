@@ -1,0 +1,10 @@
+@font-face{
+    font-family: HelveticaNeueLTStd-LtEx;
+    src:    url('../fonts/helvetica_neue_lt_ex_43/helveticaneueltstdltex.eot');
+    src:    url('../fonts/helvetica_neue_lt_ex_43/helveticaneueltstdltex.ttf')   format('truetype'),
+            url('../fonts/helvetica_neue_lt_ex_43/helveticaneueltstdltex.otf')   format('otf'),
+            url('../fonts/helvetica_neue_lt_ex_43/helveticaneueltstdltex.woff')  format('woff'),
+            url('../fonts/helvetica_neue_lt_ex_43/helveticaneueltstdltex.svg')   format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

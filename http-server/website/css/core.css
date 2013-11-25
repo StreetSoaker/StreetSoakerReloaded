@@ -1,0 +1,250 @@
+/*****************************************/
+/**              General                **/
+/*****************************************/
+*, form{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    font-family: HelveticaNeueLTStd-LtEx;
+    background: url(../img/background.png) rgba(153, 8, 10, 1);
+}
+img{
+max-width: 100%;
+width: auto\9;
+height: auto;
+border: 0;
+vertical-align: top;
+-ms-interpolation-mode: bicubic;
+}
+.logo, .inputbox{
+    position: relative;
+    margin: 0 0 0 0;
+}
+.loadingLogo{
+    position: relative;
+    top: 15%;
+}
+.inputbox ul{
+    margin: 0;
+    padding: 0;
+}
+.inputbox ul li{
+    list-style: none;
+    float: left;
+    margin: 2% 0 0 0;
+    padding: 0 2%;
+    border-right: 1px solid rgba(255, 255, 255 , 1);
+}
+.inputbox ul li:last-child{
+    border: none;
+}
+.inputbox ul li a{
+    font-family: HelveticaNeueLTStd-LtEx;
+    color: rgba(255, 255, 255, 1);
+}
+.inputbox input[type="text"], .inputbox input[type="password"]{
+    font-family: HelveticaNeueLTStd-LtEx;
+    color: rgba(255, 255, 255, 1);
+    height: 40px;
+    margin: 0 0 10px 0;
+    background: rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 0;
+}
+
+input[type="text"]:last-child{
+    margin-bottom: 0;
+}
+
+
+/*****************************************/
+/**             Buttons                 **/
+/*****************************************/
+.btn-large.loginButton{
+    position: absolute;
+    width: 60px;
+    height: 90px;
+    margin: 0;
+    background: url(../img/loginpage/login_icon_arrow.png) center center no-repeat rgba(0, 0, 0, 0.60);
+    border: none;
+    border-radius: 0;
+}
+.btn-large.registerButton{
+    position: relative;
+    margin: 0 0 50px 0;
+    background: rgba(0, 0, 0, 0.60);
+    border: none;
+    border-radius: 0;
+}
+
+/*****************************************/
+/**               Anims                 **/
+/*****************************************/
+div.loading{
+    position: relative;
+    margin: 10px;
+    width: 59px;
+    height: 21px;
+    animation: loading 1s infinite;
+    animation: loading 1s infinite;
+}
+@keyframes loading{
+    0%   {background: url(../img/anims/loading/loading_anim_1.png);}
+    25%  {background: url(../img/anims/loading/loading_anim_2.png);}
+    50%  {background: url(../img/anims/loading/loading_anim_3.png);}
+    100% {background: url(../img/anims/loading/loading_anim_4.png);}
+}
+
+
+/*****************************************/
+/**           ingame top bar            **/
+/*****************************************/
+#topbar{
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    background: url(../img/ingamepage/topbar_background.png) repeat-x;
+}
+#topbar ul{
+    margin: 0;
+    padding: 5px;
+}
+#topbar ul li{
+    float: left;
+    list-style: none;
+}
+#topbar ul li{
+    color: rgba(255, 255, 255, 1);
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+}
+.line_right{
+    margin: 0 5px 0 0;
+    padding: 0 5px 0 0;
+    background: url(../img/ingamepage/line.png) no-repeat;
+    background-position: right ;
+}
+.line_left{
+    padding: 0 0 0 5px;
+    margin: 0 0 0 5px;
+    background: url(../img/ingamepage/line.png) no-repeat;
+    background-position: left ;
+}
+aside#menu{
+    position: relative;
+    top: 40px;
+    /*height: calc(100% - 40px);*/
+    float: left;
+    background: rgba(0, 0, 0, 0.8);
+    width: 37.5%;
+}
+aside#menu ul{
+    padding: 25px 25px 25px 0;
+}
+aside#menu ul li{
+    list-style: none;
+    margin: 5px;
+    border-right: 2px solid rgba(255, 255, 255 , 1);
+}
+aside#menu ul li a{
+    color: rgba(255, 255, 255, 1);
+    font-weight: bold;
+    font-size: 20px;
+}
+aside#menu ul li a:hover{
+    text-decoration: none;
+}
+aside#menu ul li img{
+    margin: 0 8px 0 0;
+}
+#sub_menu{
+    overflow-y: scroll;
+    position: relative;
+    top: 40px;
+    /*height: calc(100% - 40px - 50px);*/
+    background: rgba(0, 0, 0, 0.88);
+    padding: 25px;
+}
+#sub_menu div{
+    float: left;
+    width: 100%;
+    color: #fff;
+}
+#sub_menu .tab-pane .inputnametag{
+    float: left;
+    width: 25%;
+}
+
+#sub_menu .tab-pane input{
+    width: 50%;
+    padding: 4px;
+    color: #fff;
+    float: left;
+    background: rgba(26, 26, 26, 1);
+    border: 2px solid rgba(45, 45, 45, 1);
+}
+#sub_menu .tab-pane button{
+    font-weight: bold;
+    color: #fff;
+    padding: 4px;
+    width: calc(50% + 12px);
+    height: 30px;
+    margin: 5px 0 0 25%;
+    background: rgba(20, 20, 20, 1);
+    border: none;
+}
+
+#sub_menu .tab-pane form:first-child{
+    margin-top: 0px;
+}
+#sub_menu .tab-pane form{
+    margin: 10% 0;
+}
+aside#stats{
+    position: relative;
+    top: 40px;
+    overflow-y: scroll;
+    /*height: calc(100% - 40px);*/
+    float: right;
+    background: rgba(0, 0, 0, 0.8);
+    width: 37.5%;
+}
+aside#stats section{
+    margin: 0 25px 25px 25px;
+    padding: 0 25px 0 0;
+    border-right: 2px solid rgba(255, 255, 255 , 1);
+    color: rgba(255, 255, 255, 1);
+}
+aside#stats h2{
+    font-size: 150%;
+}
+aside#stats table{
+    width: 100%;
+    height: 100%;
+    margin: 0 0 0 25px;
+    list-style: none;
+    font-weight: bold;
+    font-size: 100%;
+}
+aside#stats tr{
+    height: 25px;
+    padding: 50px;
+}
+aside#stats td{
+    width: 50%;
+}
+.killcode{
+    margin-left: 25%;
+    text-align: center;
+}
+#killcode span{
+    font-size: 200%;
+    font-weight: bold;
+}
