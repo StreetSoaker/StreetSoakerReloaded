@@ -2,13 +2,34 @@
 <html>
     <head>
         <title>StreetSoaker</title>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+       
+        <!-- Kendo UI -->
         <link href="styles/kendo.mobile.all.min.css" rel="stylesheet" />
+         
+        <!-- PhoneGap Local Script -->
+        <script src="phonegap.js"></script>
+
+        <!-- jQuery 2.0.3 -->
         <script src="js/jquery.min.js"></script>
+
+        <!-- Socket.IO v.9 -->
+        <script src="js/socket.io.min.js"></script>
+
+        <!-- Google Maps -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEsqx3E9ITguWtbjptJCm6QkIs4fra4Fo&sensor=true"></script>
+        
+        <!-- Kendo 2013.3.1119 -->
         <script src="js/kendo.mobile.min.js"></script>
+        
+        <!-- StreetSoaker App -->
+        <script src="js/streetsoaker.app.js"></script>
     </head>
     <body>
         <!-- Index view -->
-        <div data-role="view" id="index" data-title="StreetSoaker">
+        <div data-role="view" id="index" data-title="StreetSoaker" data-stretch="true">
             <header data-role="header">
                 <div data-role="navbar">
                     <a data-role="button" data-rel="drawer" href="#left-drawer" data-icon="more" data-align="left"></a>
@@ -16,8 +37,9 @@
                     <a data-role="button" data-rel="drawer" href="#right-drawer" data-icon="info" data-align="right"></a>
                 </div>
             </header>
-            1
+            <div id="mapView"></div>
         </div>
+
         <!-- GAME(S) --> 
         <!-- Game List View -->
         <div data-role="view" id="gameList" data-layout="mobile-view" data-title="Game List">
@@ -29,6 +51,7 @@
             </header>
             Game List
         </div>
+
         <!-- Game History View -->
         <div data-role="view" id="gameHistory" data-layout="mobile-view" data-title="Game History">
             <header data-role="header">
@@ -39,6 +62,7 @@
             </header>
             Game History
         </div>
+
         <!-- Players View -->
         <div data-role="view" id="players" data-layout="mobile-view" data-title="Players">
             <header data-role="header">
@@ -61,9 +85,10 @@
             </header>
             Settings
         </div>
+
         <!-- DRAWERS -->
         <!-- Left Drawer -->
-        <div data-role="drawer" id="left-drawer" style="width: 270px" data-title="game" data-position="left">
+        <div data-role="drawer" id="left-drawer" style="width: 270px" data-title="game" data-position="left" data-swipe-to-open="false">
 
             <ul data-role="listview" data-type="group">
                 <li>
@@ -84,7 +109,7 @@
 
         </div>
         <!-- Right Drawer -->
-        <div data-role="drawer" id="right-drawer" style="width: 270px" data-title="game" data-position="right">
+        <div data-role="drawer" id="right-drawer" style="width: 270px" data-title="game" data-position="right" data-swipe-to-open="false">
             <ul data-role="listview" data-type="group">
                 <li>
                     Game
