@@ -1,0 +1,30 @@
+/* 
+    Document   : streetsoaker.core
+    Created on : 26-nov-2013, 11:45:33
+    Author     : Joeri Aben
+    Description:
+        All the CSS changes and addons that we made on KendoUI
+*/
+
+
+
+
+
+
+/* GAME LIST */
+.gameTitle, .gameMode, .gamePlayers{
+    display: inline-block;
+}
+.gameTitle{
+    width: calc(50% - 1em);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: -6px;
+}
+.gameMode{
+    width: 25%;
+}
+.gamePlayers{
+    width: calc(25% - .66rem);
+}

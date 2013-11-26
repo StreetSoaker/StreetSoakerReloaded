@@ -4,11 +4,13 @@
         <title>StreetSoaker</title>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-       
+
         <!-- Kendo UI -->
         <link href="styles/kendo.mobile.all.min.css" rel="stylesheet" />
-         
+
+        <!-- StreetSoaker App -->
+        <link href="styles/streetsoaker.core.css" rel="stylesheet" />
+        
         <!-- PhoneGap Local Script -->
         <script src="phonegap.js"></script>
 
@@ -20,10 +22,10 @@
 
         <!-- Google Maps -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEsqx3E9ITguWtbjptJCm6QkIs4fra4Fo&sensor=true"></script>
-        
+
         <!-- Kendo 2013.3.1119 -->
         <script src="js/kendo.mobile.min.js"></script>
-        
+
         <!-- StreetSoaker App -->
         <script src="js/streetsoaker.app.js"></script>
     </head>
@@ -49,7 +51,41 @@
                     <span data-role="view-title">Game List </span>
                 </div>
             </header>
-            Game List
+
+
+
+            <ul data-role="listview" data-style="inset" data-type="group">
+                <li>
+                    Public
+                    <ul>
+                        <li data-icon="globe"><a><span class="gameTitle">GERRY HIERO</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">nanana</span><span class="gameMode">TDM</span><span class="gamePlayers">10/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">md2a</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Game 1111</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Henk gaat verliezen nananananana</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    Private
+                    <ul>
+                        <li data-icon="organize"><a><span class="gameTitle">GERRY HIERO</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">nanana</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">md2a</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">niet joinen</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">Game 1111</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">DBJDJJDHD</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
         </div>
 
         <!-- Game History View -->
