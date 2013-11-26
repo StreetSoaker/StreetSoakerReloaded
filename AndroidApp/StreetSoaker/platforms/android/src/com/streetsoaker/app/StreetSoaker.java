@@ -20,6 +20,7 @@
 package com.streetsoaker.app;
 
 import android.os.Bundle;
+import android.webkit.WebSettings; 
 import org.apache.cordova.*;
 
 public class StreetSoaker extends CordovaActivity 
@@ -32,6 +33,9 @@ public class StreetSoaker extends CordovaActivity
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
         //super.loadUrl("file:///android_asset/www/index.html")
+        WebSettings settings = appView.getSettings(); 
+        settings.setUseWideViewPort(true); 
+        settings.setLoadWithOverviewMode(true); 
     }
 }
 

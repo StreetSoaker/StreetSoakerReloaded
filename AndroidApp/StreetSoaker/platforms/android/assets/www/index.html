@@ -1,42 +1,133 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
+<!doctype html>
 <html>
     <head>
+        <title>StreetSoaker</title>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+       
+        <!-- Kendo UI -->
+        <link href="css/kendo.mobile.all.min.css" rel="stylesheet" />
+         
+        <!-- PhoneGap Local Script -->
+        <script src="phonegap.js"></script>
+
+        <!-- jQuery 2.0.3 -->
+        <script src="js/jquery.min.js"></script>
+
+        <!-- Socket.IO v.9 -->
+        <script src="js/socket.io.min.js"></script>
+
+        <!-- Kendo 2013.3.1119 -->
+        <script src="js/kendo.mobile.min.js"></script>
+
+        <!-- Google Maps -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEsqx3E9ITguWtbjptJCm6QkIs4fra4Fo&sensor=true"></script>
+
+        <!-- StreetSoaker App -->
+        <script src="js/streetsoaker.app.js"></script>
     </head>
     <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+        <!-- Index view -->
+        <div data-role="view" id="index" data-title="StreetSoaker" data-stretch="true">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a data-role="button" data-rel="drawer" href="#left-drawer" data-icon="more" data-align="left"></a>
+                    <span data-role="view-title"></span>
+                    <a data-role="button" data-rel="drawer" href="#right-drawer" data-icon="info" data-align="right"></a>
+                </div>
+            </header>
+            <div id="mapView"></div>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
+
+        <!-- GAME(S) --> 
+        <!-- Game List View -->
+        <div data-role="view" id="gameList" data-layout="mobile-view" data-title="Game List">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title">Game List </span>
+                </div>
+            </header>
+            Game List
+        </div>
+
+        <!-- Game History View -->
+        <div data-role="view" id="gameHistory" data-layout="mobile-view" data-title="Game History">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title">Game History</span>
+                </div>
+            </header>
+            Game History
+        </div>
+
+        <!-- Players View -->
+        <div data-role="view" id="players" data-layout="mobile-view" data-title="Players">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title">Players</span>
+                </div>
+            </header>
+            Playersssss
+        </div>
+
+        <!-- ACCOUNT -->
+        <!-- Settings view -->
+        <div data-role="view" id="settings" data-layout="mobile-view" data-title="Settings">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title">Settings</span>
+                </div>
+            </header>
+            Settings
+        </div>
+
+        <!-- DRAWERS -->
+        <!-- Left Drawer -->
+        <div data-role="drawer" id="left-drawer" style="width: 270px" data-title="game" data-position="left" data-swipe-to-open="false">
+
+            <ul data-role="listview" data-type="group">
+                <li>
+                    Games
+                    <ul>
+                        <li data-icon="globe"><a href="gameList">Game List</a></li>
+                        <li data-icon="history"><a href="gameHistory">Game History</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Account
+                    <ul>
+                        <li data-icon="settings"><a href="settings">Settings</a></li>
+                        <li data-icon="action"><a>Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!-- Right Drawer -->
+        <div data-role="drawer" id="right-drawer" style="width: 270px" data-title="game" data-position="right" data-swipe-to-open="false">
+            <ul data-role="listview" data-type="group">
+                <li>
+                    Game
+                    <ul>
+                        <li>Room #1337</li>
+                        <li>5 Alive</li>
+                        <li>10 Dead</li>
+                        <li>15 Players</li>
+                        <li data-icon="action"><a href="players">Players</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Kendo UI Start -->
+        <script>
+            new kendo.mobile.Application($(document.body), {
+                skin: "flat"
+            });
         </script>
     </body>
 </html>
