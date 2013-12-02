@@ -1,4 +1,4 @@
-google.maps.event.addDomListener(window, 'load', deviceReady);
+document.addEventListener("deviceready", deviceReady, false);
 
 function deviceReady() {
 	google.maps.visualRefresh = true;
@@ -33,4 +33,35 @@ function deviceReady() {
 		alert('code: '+ error.code+'\n'+'message:'+error.message+'\n');
 	}
 
+
+	draweropen = false;
+
+	function onDrawerShow() {
+		draweropen = true;
+		document.addEventListener("backbutton", onBackKeyDown, false);
+	}
+
+	function onDrawerHide() {
+		draweropen = false;
+		document.removeEventListener("backbutton", onBackKeyDown, false);
+	}
+
+	function onBackKeyDown(event) {
+		$("#left-drawer").data("kendoMobileDrawer").hide();
+		draweropen = false;
+		event.preventDefault();
+		return false;
+	}
+	
+	document.addEventListener("menubutton", onMenuKeyDown, false);
+
+	function onMenuKeyDown() {
+		if (draweropen === true) {
+			draweropen = false;
+			$("#left-drawer").data("kendoMobileDrawer").hide();
+		} else {
+			draweropen = true;
+			$("#left-drawer").data("kendoMobileDrawer").show();
+		}
+	}
 }

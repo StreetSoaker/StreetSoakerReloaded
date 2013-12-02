@@ -38,6 +38,7 @@ C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\and
 C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\android\assets\www\css\images\KendoUI.woff \
 C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\android\assets\www\css\images\wp8_icons.png \
 C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\android\assets\www\css\images\wp8_inverseicons.png \
+C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\android\assets\www\js\cordova.js \
 C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\android\assets\www\js\cultures \
 C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\android\assets\www\js\jquery-2.0.3.min.js \
 C:\Users\Koen\Desktop\StreetSoakerReloaded\AndroidApp\StreetSoaker\platforms\android\assets\www\js\jquery.min.js \
