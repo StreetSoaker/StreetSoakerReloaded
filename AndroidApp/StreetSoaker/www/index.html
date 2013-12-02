@@ -6,8 +6,11 @@
         <meta name="format-detection" content="teleaphone=no" />
         
         <!-- Kendo UI -->
-        <link href="css/kendo.mobile.all.min.css" rel="stylesheet" />
+        <link href="styles/kendo.mobile.all.min.css" rel="stylesheet" />
 
+        <!-- StreetSoaker App -->
+        <link href="styles/streetsoaker.core.css" rel="stylesheet" />
+        
         <!-- jQuery 2.0.3 -->
         <script src="js/jquery.min.js"></script>
 
@@ -19,8 +22,9 @@
 
         <!-- StreetSoaker App -->
         <script src="js/streetsoaker.app.js"></script>
+        <script src="js/streetsoaker.buttons.js"></script>
     </head>
-    <body>
+        <body>
         <!-- Index view -->
         <div data-role="view" id="index" data-title="StreetSoaker" data-stretch="true">
             <header data-role="header">
@@ -42,7 +46,35 @@
                     <span data-role="view-title">Game List </span>
                 </div>
             </header>
-            Game List
+            <ul data-role="listview" data-style="inset" data-type="group">
+                <li>
+                    Public
+                    <ul>
+                        <li data-icon="globe"><a><span class="gameTitle">GERRY HIERO</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">nanana</span><span class="gameMode">TDM</span><span class="gamePlayers">10/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">md2a</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Game 1111</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">Henk gaat verliezen nananananana</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="globe"><a><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    Private
+                    <ul>
+                        <li data-icon="organize"><a><span class="gameTitle">GERRY HIERO</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">nanana</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">md2a</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">niet joinen</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">Game 1111</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">DBJDJJDHD</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
+                        <li data-icon="organize"><a><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
 
         <!-- Game History View -->
@@ -53,7 +85,21 @@
                     <span data-role="view-title">Game History</span>
                 </div>
             </header>
-            Game History
+            <ul data-role="listview" data-style="inset" data-type="group">
+                <li>
+                    Last Month
+                    <ul>
+                        <li data-icon="globe"><span class="gameTitle">GERRY HIERO</span><span class="gameMode">CTF</span><span class="gamePlace">5th</span><span class="gameDate">20-09-2012</span></li>
+                        <li data-icon="organize"><span class="gameTitle">nanana</span><span class="gameMode">TDM</span><span class="gamePlace">1st</span><span class="gameDate">25-58-5455</span></li>
+                        <li data-icon="globe"><span class="gameTitle">md2a</span><span class="gameMode">PRO</span><span class="gamePlace">2nd</span><span class="gameDate">25-55-5121</span></li>
+                        <li data-icon="organize"><span class="gameTitle">Game 1111</span><span class="gameMode">CTF</span><span class="gamePlace">8th</span><span class="gameDate">25-55-5265</span></li>
+                        <li data-icon="globe"><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">PRO</span><span class="gamePlace">25th</span><span class="gameDate">52-86-5556</span></li>
+                        <li data-icon="globe"><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlace">18th</span><span class="gameDate">22-55-5554</span></li>
+                        <li data-icon="organize"><span class="gameTitle">Henk gaat verliezen nananananana</span><span class="gameMode">PRO</span><span class="gamePlace">25th</span><span class="gameDate">78-12-25</span></li>
+                        <li data-icon="globe"><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlace">24th</span><span class="gameDate">56-99-2013</span></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
 
         <!-- Players View -->
@@ -69,19 +115,33 @@
 
         <!-- ACCOUNT -->
         <!-- Settings view -->
-        <div data-role="view" id="settings" data-layout="mobile-view" data-title="Settings">
+        <div data-role="view" id="settings" data-layout="mobile-view" data-title="Settings" class="settings">
             <header data-role="header">
                 <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <a data-align="left" data-role="backbutton" id="settingsBack">Back</a>
                     <span data-role="view-title">Settings</span>
+                    <a data-align="right" data-icon="ssEdit" data-role="button" id="settingsEdit">Edit</a>
                 </div>
             </header>
-            Settings
+            <form>
+                <ul data-role="listview" data-style="inset">
+                    <li>
+                        <label>Username
+                            <input type="text" value="Skipler" disabled="disabled" class="editable" />
+                        </label>
+                    </li>
+                    <li>
+                        <label>Email
+                            <input type="text" value="j.aben@sintlucasedu.nl" disabled="disabled" class="editable" />
+                        </label>
+                    </li>
+                </ul>
+            </form>
         </div>
 
         <!-- DRAWERS -->
         <!-- Left Drawer -->
-        <div data-role="drawer" id="left-drawer" data-before-show="onDrawerShow" data-hide="onDrawerHide" style="width: 270px" data-title="game" data-position="left" data-swipe-to-open="false">
+        <div data-role="drawer" id="left-drawer" style="width: 270px" data-title="game" data-position="left" data-swipe-to-open="false">
 
             <ul data-role="listview" data-type="group">
                 <li>
@@ -116,8 +176,6 @@
                 </li>
             </ul>
         </div>
-       
-
         <!-- Kendo UI Initizalize -->
         <script>
             new kendo.mobile.Application($(document.body), {
