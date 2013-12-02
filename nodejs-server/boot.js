@@ -2,7 +2,8 @@
 var io              = require('socket.io').listen(8080);
 var gamefile        = require('./modules/game.js');
 var clientDisplay   = require('./modules/clientdisplayfunctions.js');
-var join             = require('./modules/joingame.js');
+var join            = require('./modules/joingame.js');
+var mysql           = require('./modules/mysql.js');
 
 var runningGames    = new Array();
 
@@ -50,7 +51,7 @@ io.sockets.on('connection', function (socket) {
         //console.log(io.sockets.manager.roomClients[socket.id]);
 
         // Add info to the game
-        runningGames[game.id]._configGame(0, 0, 0, Date(), 3);
+        runningGames[game.id]._configGame(0, '', 300, 'This is my life! Its now or never!', 2.12344, 51.12345, 1, 42);
 
 
         //Get the playTime of the game if the gameID is set
@@ -62,10 +63,19 @@ io.sockets.on('connection', function (socket) {
 
         // On disconnect destrpy the game
         socket.on('disconnect', function() {
-            //Destroy Game
-            if(runningGames[game.id]._destroyGame()) {
-                delete runningGames[game.id];
-                console.log(socket.id + ' disconnected!');
+            console.log(io.sockets.manager.roomClients[socket.id]);
+            for(i in io.sockets.manager.roomClients[socket.id]) {
+                if(i.substr(1)) {
+                    if(socket.leave(i)) {
+                        if(game.playerAmount < 2) {
+                            game._clearPlayTime;
+                            delete runningGames[gameID];
+                        } else {
+                            game.playerAmount--;
+                        }
+                        io.sockets.emit('runningGames', clientDisplay.gamesList(runningGames));
+                    }
+                }
             }
         });
 
@@ -76,6 +86,4 @@ io.sockets.on('connection', function (socket) {
             runningGames[game.id]._clearPlayTime();
         });
     });
-
-    
 });
