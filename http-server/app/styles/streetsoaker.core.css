@@ -5,14 +5,22 @@
     Description:
         All the CSS changes and addons that we made on KendoUI
 */
+/* COLOR CHANGES */
 
 
 
+/* ICONS */
+.km-ssEdit:after,
+.km-ssEdit:before{
+        content: "\e07b";
+    }
 
-
-
-/* GAME LIST */
-.gameTitle, .gameMode, .gamePlayers{
+/* GAME LIST VIEW */
+.gameTitle,
+.gameMode,
+.gamePlayers,
+.gamePlace,
+.gameDate{
     display: inline-block;
 }
 .gameTitle{
@@ -27,4 +35,37 @@
 }
 .gamePlayers{
     width: calc(25% - .66rem);
+}
+.gamePlace{
+    width: calc(12% - .33rem);
+}
+.gameDate{
+    width: calc(12% - .33rem);
+}
+
+
+/* GAME SETTINGS VIEW */
+.km-root .settings .km-listview label{
+    width: 100%;
+}
+
+.km-wp .settings .km-listview label{
+    color: #999;
+}
+
+.km-root .km-pane .km-view.settings .km-listview input{
+    position: relative;
+    width: 100%;
+    right: 0;
+    margin-top: 0;
+    top: 0;
+}
+
+.km-root .km-wp .km-view.settings .km-listview input{
+    margin-top: .2em;
+}
+
+.km-root .km-ios .km-view.settings .km-listview input,
+.km-root .km-ios7 .km-view.settings .km-listview input{
+    padding: .4em 0;
 }

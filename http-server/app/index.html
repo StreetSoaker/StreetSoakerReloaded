@@ -10,7 +10,7 @@
 
         <!-- StreetSoaker App -->
         <link href="styles/streetsoaker.core.css" rel="stylesheet" />
-        
+
         <!-- PhoneGap Local Script -->
         <script src="phonegap.js"></script>
 
@@ -28,6 +28,7 @@
 
         <!-- StreetSoaker App -->
         <script src="js/streetsoaker.app.js"></script>
+        <script src="js/streetsoaker.edit.js"></script>
     </head>
     <body>
         <!-- Index view -->
@@ -51,9 +52,6 @@
                     <span data-role="view-title">Game List </span>
                 </div>
             </header>
-
-
-
             <ul data-role="listview" data-style="inset" data-type="group">
                 <li>
                     Public
@@ -83,9 +81,6 @@
                     </ul>
                 </li>
             </ul>
-
-
-
         </div>
 
         <!-- Game History View -->
@@ -96,7 +91,21 @@
                     <span data-role="view-title">Game History</span>
                 </div>
             </header>
-            Game History
+            <ul data-role="listview" data-style="inset" data-type="group">
+                <li>
+                    Last Month
+                    <ul>
+                        <li data-icon="globe"><span class="gameTitle">GERRY HIERO</span><span class="gameMode">CTF</span><span class="gamePlace">5th</span><span class="gameDate">20-09-2012</span></li>
+                        <li data-icon="organize"><span class="gameTitle">nanana</span><span class="gameMode">TDM</span><span class="gamePlace">1st</span><span class="gameDate">25-58-5455</span></li>
+                        <li data-icon="globe"><span class="gameTitle">md2a</span><span class="gameMode">PRO</span><span class="gamePlace">2nd</span><span class="gameDate">25-55-5121</span></li>
+                        <li data-icon="organize"><span class="gameTitle">Game 1111</span><span class="gameMode">CTF</span><span class="gamePlace">8th</span><span class="gameDate">25-55-5265</span></li>
+                        <li data-icon="globe"><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">PRO</span><span class="gamePlace">25th</span><span class="gameDate">52-86-5556</span></li>
+                        <li data-icon="globe"><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlace">18th</span><span class="gameDate">22-55-5554</span></li>
+                        <li data-icon="organize"><span class="gameTitle">Henk gaat verliezen nananananana</span><span class="gameMode">PRO</span><span class="gamePlace">25th</span><span class="gameDate">78-12-25</span></li>
+                        <li data-icon="globe"><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlace">24th</span><span class="gameDate">56-99-2013</span></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
 
         <!-- Players View -->
@@ -112,14 +121,28 @@
 
         <!-- ACCOUNT -->
         <!-- Settings view -->
-        <div data-role="view" id="settings" data-layout="mobile-view" data-title="Settings">
+        <div data-role="view" id="settings" data-layout="mobile-view" data-title="Settings" class="settings">
             <header data-role="header">
                 <div data-role="navbar">
-                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <a data-align="left" data-role="backbutton" id="settingsBack">Back</a>
                     <span data-role="view-title">Settings</span>
+                    <a data-align="right" data-icon="ssEdit" data-role="button" id="settingsEdit">Edit</a>
                 </div>
             </header>
-            Settings
+            <form>
+                <ul data-role="listview" data-style="inset">
+                    <li>
+                        <label>Username
+                            <input type="text" value="Skipler" disabled="disabled" class="editable" />
+                        </label>
+                    </li>
+                    <li>
+                        <label>Email
+                            <input type="text" value="j.aben@sintlucasedu.nl" disabled="disabled" class="editable" />
+                        </label>
+                    </li>
+                </ul>
+            </form>
         </div>
 
         <!-- DRAWERS -->
