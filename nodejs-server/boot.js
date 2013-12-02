@@ -1,13 +1,22 @@
 //Require modules
 var io              = require('socket.io').listen(8080);
+var loadServer      = require('./modules/loadServer.js');
 var gamefile        = require('./modules/game.js');
 var clientDisplay   = require('./modules/clientdisplayfunctions.js');
 var join            = require('./modules/joingame.js');
 var mysql           = require('./modules/mysql.js');
 
-var runningGames    = new Array();
+loadServer.games();
 
 io.sockets.on('connection', function (socket) {
+    //Return games on request
+    socket.on('getGames', function() { 
+        socket.emit('gamesObject', loadServer.getClientGamesObject());
+    });
+
+    console.log(runningGames);
+
+    // Temp
     socket.emit('runningGames', clientDisplay.gamesList(runningGames));
 
     socket.on('joinGame', function(gameID) {
@@ -51,7 +60,7 @@ io.sockets.on('connection', function (socket) {
         //console.log(io.sockets.manager.roomClients[socket.id]);
 
         // Add info to the game
-        runningGames[game.id]._configGame(0, '', 300, 'This is my life! Its now or never!', 2.12344, 51.12345, 1, 42);
+        runningGames[game.id]._configGame(1, '', 300, gameID, 2.12344, 51.12345, 1, 42);
 
 
         //Get the playTime of the game if the gameID is set

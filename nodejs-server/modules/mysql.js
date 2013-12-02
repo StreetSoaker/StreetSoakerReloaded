@@ -1,11 +1,11 @@
 var mysql = require('mysql');
 
-var connection  = exports.connection = mysql.createConnection({
+var mysql_connection  = global.mysql_connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'qrjdwqyurdpk',
   database : 'streetsoaker',
 });
 
-connection.connect();
+mysql_connection.connect();
 

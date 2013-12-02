@@ -1,4 +1,3 @@
-var mysql = require('./mysql.js');
 var game = exports.game = function(id) {
 	var this_ = this;
 
@@ -41,7 +40,7 @@ exports.game.prototype._configGame = function(private, password, radius, name, l
 	this.startTime = d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
 
 	// Add game to db
-	mysql.connection.query("INSERT INTO `games` VALUES('', "+ this.private +", "+ this.password +", "+ this.gamemode +", '"+ this.name +"', "+ this.lat +", "+ this.long +", "+ this.radius +", "+ this.maxPlayers +", '"+ this.startTime +"', NULL)", function(err, rows, fields) {
+	mysql_connection.query("INSERT INTO `games` VALUES('', "+ this.private +", "+ this.password +", "+ this.gamemode +", '"+ this.name +"', "+ this.lat +", "+ this.long +", "+ this.radius +", "+ this.maxPlayers +", '"+ this.startTime +"', NULL)", function(err, rows, fields) {
 	if (err) throw err;
 
 	});
