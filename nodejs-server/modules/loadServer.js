@@ -1,38 +1,15 @@
-var runningGames = global.runningGames = new Array();
-var clientGamesObject = new Array();
+global.runningGames 	= new Array();
+var emitGames = {};
 
 exports.games = function() {
-	var emitGames = new Array();
 	// Get public games
-	mysql_connection.query("SELECT * FROM `games` WHERE `endDate` IS NULL AND `private`=0 ORDER BY `name`", function(err, rows, fields) {
+	mysql_connection.query("SELECT games.`id`, games.`name`, games.`private`, games.`gameMode`, games.`maxPlayers`, COUNT(players.id) AS playerAmount FROM `games` LEFT JOIN `players` ON players.`gameId`=games.`id` WHERE games.`endDate` IS NULL GROUP BY games.id ORDER BY `private`,`name`", function(err, rows, fields) {
 		if (err) throw err;
-		clientGamesObject['public'] = rows;
-
-		// Get private games
-		mysql_connection.query("SELECT * FROM `games` WHERE `endDate` IS NULL AND `private`=1 ORDER BY `name`", function(err, rows, fields) {
-			if (err) throw err;
-			clientGamesObject['private'] = rows;
-			
-			addPlayerAmount(clientGamesObject);
-		});
+		console.log(rows[2].id);
+		emitGames = rows;
 	});
 };
 
-var addPlayerAmount = function(games) {
-	this_ = this;
-	this_.newGames = new Array();
-
-	for(i in games) {
-		runningGames.push(games[i]);
-	}
-}
-
-var serverGames = function(games) {
-	for(i in games) {
-		runningGames.push(games[i]);
-	}
-};
-
 exports.getClientGamesObject = function() {
-	return clientGamesObject;
+	return emitGames;
 };

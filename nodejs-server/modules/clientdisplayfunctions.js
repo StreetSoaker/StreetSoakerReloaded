@@ -1,4 +1,4 @@
-var gamesList = exports.gamesList = function(runningGames) {
+var gamesList = exports.gamesList = function() {
     function dynamicSort(property) {
         var sortOrder = 1;
         if(property[0] === "-") {
@@ -12,7 +12,7 @@ var gamesList = exports.gamesList = function(runningGames) {
     }
 
     //Sort games on name a-z
-    runningGames.sort(dynamicSort('id'));
+    //runningGames.sort(dynamicSort('id'));
 
     var jsonString = '{';
     for(key in runningGames) {
@@ -20,12 +20,12 @@ var gamesList = exports.gamesList = function(runningGames) {
         if(runningGames[key].playerAmount == runningGames[key].maxPlayers) {
             numPlayers = 'full';
         }
-        jsonString += '"'+key+'":{"numPlayers":"'+numPlayers+'"},';  
+        jsonString += '"'+runningGames[key].name+'":{"numPlayers":"'+numPlayers+'"},';  
     }
     jsonString += '}';
 
     //Convert String to JSON (String -> JSON string -> JSON object)
     jsonObject = JSON.parse(JSON.stringify(eval("(" + jsonString + ")")));
 
-    return jsonObject;
+    return jsonString;
 }

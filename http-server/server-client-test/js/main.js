@@ -5,7 +5,7 @@ socket.on('connect', function () {
 		$('#currentGames').html(' ');
 		console.log(data);
 		for(key in data) {
-			$('#currentGames').append("\n<li>id:"+ key + " [Num Players:"+ data[key].numPlayers +"]</li>");
+			$('#currentGames').append("\n<li>Name:"+ key + " [Num Players:"+ data[key].numPlayers +"]</li>");
 		}
 	});
 
@@ -13,7 +13,7 @@ socket.on('connect', function () {
 		console.log(data);
 	});
 
-	socket.on('debugInfo', function(data) {
+	socket.on('gamesObject', function(data) {
 		console.log(data);
 		console.log('----------------------------------------------------------------------------');
 	});
