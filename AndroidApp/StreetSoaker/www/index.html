@@ -23,8 +23,34 @@
         <!-- StreetSoaker App -->
         <script src="js/streetsoaker.app.js"></script>
         <script src="js/streetsoaker.buttons.js"></script>
+        
     </head>
-        <body>
+    <body>
+        <!-- Login View -->
+        <div data-role="view">
+            <a data-rel="modalview" data-role="button" href="#facebook">Facebook</a>
+            <a data-rel="modalview" data-role="button" href="#twitter">Twitter</a>
+        </div>
+        <div data-role="modalview" id="facebook">
+            <div data-role="header">
+               <div data-role="navbar">
+                   <a data-align="right" data-click="closeModalView" data-role="button">Close</a>
+               </div>
+           </div>
+           facebook content
+            <a data-click="closeModalView" data-role="button" href="#index">Done</a>
+       </div>
+       <div data-role="modalview" id="twitter">
+           <div data-role="header">
+               <div data-role="navbar">
+                   <a data-align="right" data-click="closeModalView" data-role="button">Close</a>
+               </div>
+           </div>
+           twitter content
+            <a data-click="closeModalView" data-role="button" href="#index">Done</a>
+       </div>
+
+            
         <!-- Index view -->
         <div data-role="view" id="index" data-title="StreetSoaker" data-stretch="true">
             <header data-role="header">
@@ -110,7 +136,20 @@
                     <span data-role="view-title">Players</span>
                 </div>
             </header>
-            Playersssss
+            <ul data-role="listview" data-style="inset" data-type="insert">
+                <li>Henk</li>
+                <li>ger</li>
+                <li>hek</li>
+                <li>Hacker</li>
+                <li>hackzor</li>
+                <li>kees</li>
+                <li>downy</li>
+                <li>joppie</li>
+                <li>flipppo</li>
+                <li>flippie</li>
+                <li>dummmykind</li>
+                
+            </ul>
         </div>
 
         <!-- ACCOUNT -->
@@ -155,7 +194,7 @@
                     Account
                     <ul>
                         <li data-icon="settings"><a href="settings">Settings</a></li>
-                        <li data-icon="action"><a>Logout</a></li>
+                        <li data-icon="action"><a href="/">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -181,6 +220,12 @@
             new kendo.mobile.Application($(document.body), {
                 skin: "flat"
             });
+             
+           function closeModalView(e) {
+               // find the closest modal view, relative to the button element.
+               var modalView = e.sender.element.closest("[data-role=modalview]").data("kendoMobileModalView");
+               modalView.close();
+           }
         </script>
 
          <!-- Google Maps -->
