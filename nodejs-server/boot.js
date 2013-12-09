@@ -14,10 +14,10 @@ io.sockets.on('connection', function (socket) {
         socket.emit('gamesObject', loadServer.getClientGamesObject());
     });
 
-    console.log(runningGames);
+    //console.log(runningGames);
 
     // Temp
-    socket.emit('runningGames', clientDisplay.gamesList(runningGames));
+    socket.emit('runningGames', 'clientDisplay.gamesList()');
 
     socket.on('joinGame', function(gameID) {
         var game = null;
