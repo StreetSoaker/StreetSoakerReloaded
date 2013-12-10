@@ -1,39 +1,30 @@
 //Require modules
-global.io              = require('socket.io').listen(8080);
-var loadServer      = require('./modules/loadServer.js');
-var gamefile        = require('./modules/game.js');
-var clientDisplay   = require('./modules/clientdisplayfunctions.js');
+global.io           = require('socket.io').listen(8080);
 var mysql           = require('./modules/mysql.js');
-loadServer.games();
+var loadServer      = require('./modules/loadServer.js').games();
+var clientConnect   = require('./modules/clientConnect.js');
+var gamefile        = require('./modules/game.js');
 
 io.sockets.on('connection', function (socket) {
 
-    loadServer.bindPlayerToRooms(2);
+    clientConnect.start(socket);
 
-    //Return games on request
-    socket.on('getGames', function() { 
-        socket.emit('gamesObject', loadServer.getClientGamesObject());
+    //Return games on clients request
+    socket.on('getGames', function(loadServer) { 
+        socket.emit('gamesObject', runningGames);
     });
 
-
-    //console.log(runningGames);
-
-    // Temp
-    socket.emit('runningGames', 'clientDisplay.gamesList()');
-
+    // Player requests to join a game
     socket.on('joinGame', function(gameID) {
+        //Log request in console
+        console.log('Requests to join/make game id: ' + gameID + ' by ' + socket.id);
         
-        var game = null;
-
-        console.log(socket.id + ' requests to join/make game id: ' + gameID);
-        
-        gamefile.join();
-
+        gamefile.join(gameID, socket);
 
         //console.log(io.sockets.manager.roomClients[socket.id]);
 
         // Add info to the game
-        runningGames[game.id]._configGame(1, '', 300, gameID, 2.12344, 51.12345, 1, 42);
+        //runningGames[game.id]._configGame(1, '', 300, gameID, 2.12344, 51.12345, 1, 42);
 
 
         //Get the playTime of the game if the gameID is set
@@ -43,29 +34,18 @@ io.sockets.on('connection', function (socket) {
             socket.emit('time', playTime);
         });
 
-        // On disconnect destrpy the game
-        socket.on('disconnect', function() {
-            console.log(io.sockets.manager.roomClients[socket.id]);
-            for(i in io.sockets.manager.roomClients[socket.id]) {
-                if(i.substr(1)) {
-                    if(socket.leave(i)) {
-                        if(game.playerAmount < 2) {
-                            game._clearPlayTime;
-                            delete runningGames[gameID];
-                        } else {
-                            game.playerAmount--;
-                        }
-                        io.sockets.emit('runningGames', clientDisplay.gamesList(runningGames));
-                    }
-                }
-            }
-        });
-
         /*
          * NEVER USE THIS IN THE REAL APP
          */
         socket.on('clearPlayTime', function() {
             runningGames[game.id]._clearPlayTime();
         });
+
+    });
+
+
+    // On disconnect destrpy the game
+    socket.on('disconnect', function() {
+        gamefile.leave(socket);
     });
 });

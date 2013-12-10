@@ -1,21 +1,16 @@
 var socket = io.connect('146.185.148.10:8080');
 socket.on('connect', function () {
 
-	socket.on('runningGames', function(data) {
-		$('#currentGames').html(' ');
-		console.log(data);
-		for(key in data) {
-			$('#currentGames').append("\n<li>Name:"+ key + " [Num Players:"+ data[key].numPlayers +"]</li>");
-		}
-	});
-
 	socket.on('time', function(data) {
 		console.log(data);
 	});
 
-	socket.on('gamesObject', function(data) {
-		console.log(data);
-		console.log('----------------------------------------------------------------------------');
+	// Get game list
+	socket.emit('getGames');
+	socket.on('gamesObject', function(data){
+		for(i in data) {
+			$('#currentGames').append('<tr class="' + i + '"><td>' + i + '</td><td>' + data[i].name + '</td><td>' + data[i].playerAmount + '/' + data[i].maxPlayers + '</td><td><a href="#' + i + '" onClick="socket.emit(\'joinGame\', ' + i + ');">Join</a></td></tr>');
+		}
 	});
 });
 

@@ -1,5 +1,5 @@
 var ffa             	= require('./gamemodes/ffa.js');
-global.runningGames 	= new Array();
+global.runningGames 	= new Object();
 var emitGames 			= {};
 
 exports.games = function() {
@@ -8,6 +8,13 @@ exports.games = function() {
 		if (err) throw err;
 		console.log(rows[2].id);
 		emitGames = rows;
+
+		// Create game list for the server
+		for(i in emitGames) {
+			var id = emitGames[i].id;
+			runningGames[id] = emitGames[i];
+		}
+
 		ffa.boot();
 	});
 };
@@ -15,11 +22,3 @@ exports.games = function() {
 exports.getClientGamesObject = function() {
 	return emitGames;
 };
-
-exports.bindPlayerToRooms = function(userId) {
-	mysql_connection.query("SELECT players.gameId FROM `players` WHERE userId='"+ userId +"' ORDER BY `gameId` LIMIT 0,1", function(err, rows, fields) {
-		if (err) throw err;
-		console.log(rows);
-		
-	});
-}
