@@ -54,3 +54,63 @@ exports.game.prototype._clearPlayTime = function() {
 exports.game.prototype._destroyGame = function() {
 	this._clearPlayTime();
 }
+
+exports.join = function(gameID) {
+    //Check if room exists
+    if(io.sockets.clients(gameID).length == 0) {
+        //Make game
+        game = new game(gameID);
+
+        //Add game to runningGames
+        runningGames[game.id]  =  game;
+
+        //Join the room
+        if(chechPossibility(game.id)) {
+            socket.join(game.id, function() {
+                game.playerAmount++;
+                io.sockets.emit('runningGames', clientDisplay.gamesList(runningGames));
+            });
+        }
+
+        console.log('Game ['+ game.id +'] made and joined by: '+ socket.id);
+    } else {
+        //Scope game
+        game = runningGames[gameID];
+
+        // Join the room for this game if possible
+        if(chechPossibility(game.id)) {
+            socket.join(game.id, function() {
+                console.log('Game '+ game.id +' joined by: '+ socket.id);
+                game.playerAmount++;
+                io.sockets.emit('runningGames', clientDisplay.gamesList(runningGames));
+            });
+        } else {
+            console.log('Game '+ game.id +' join failed by: '+ socket.id);
+        }  
+    }
+}
+
+var chechPossibility = function(gameID) {
+	socketID 			= socket.id
+	var rooms 			= io.sockets.manager.rooms;
+	var playerAmount 	= runningGames[gameID].playerAmount;
+	var maxPlayerAmount = runningGames[gameID].maxPlayerAmount;
+	var bool = true;
+	for(key in rooms) {
+		if(key.substr(1) == gameID) {
+			for(i in rooms[key]) {
+				if(rooms[key][i] == socketID) {
+					bool = false;
+				}
+			}
+		}
+	}
+
+	if(bool) {
+		if(playerAmount >= maxPlayerAmount) {
+			bool = false;
+		}
+	}
+
+	return bool;
+}

@@ -1,18 +1,20 @@
 //Require modules
-var io              = require('socket.io').listen(8080);
+global.io              = require('socket.io').listen(8080);
 var loadServer      = require('./modules/loadServer.js');
 var gamefile        = require('./modules/game.js');
 var clientDisplay   = require('./modules/clientdisplayfunctions.js');
-var join            = require('./modules/joingame.js');
 var mysql           = require('./modules/mysql.js');
-
 loadServer.games();
 
 io.sockets.on('connection', function (socket) {
+
+    loadServer.bindPlayerToRooms(2);
+
     //Return games on request
     socket.on('getGames', function() { 
         socket.emit('gamesObject', loadServer.getClientGamesObject());
     });
+
 
     //console.log(runningGames);
 
@@ -20,42 +22,13 @@ io.sockets.on('connection', function (socket) {
     socket.emit('runningGames', 'clientDisplay.gamesList()');
 
     socket.on('joinGame', function(gameID) {
+        
         var game = null;
 
         console.log(socket.id + ' requests to join/make game id: ' + gameID);
+        
+        gamefile.join();
 
-        //Check if room exists
-        if(io.sockets.clients(gameID).length == 0) {
-            //Make game
-            game = new gamefile.game(gameID);
-
-            //Add game to runningGames
-            runningGames[game.id]  =  game;
-
-            //Join the room
-            if(join.chechPossibility(game.id, io.sockets.manager.rooms, socket.id)) {
-                socket.join(game.id, function() {
-                    game.playerAmount++;
-                    io.sockets.emit('runningGames', clientDisplay.gamesList(runningGames));
-                });
-            }
-
-            console.log('Game ['+ game.id +'] made and joined by: '+ socket.id);
-        } else {
-            //Scope game
-            game = runningGames[gameID];
-
-            // Join the room for this game if possible
-            if(join.chechPossibility(game.id, io.sockets.manager.rooms, socket.id, game.playerAmount, game.maxPlayers)) {
-                socket.join(game.id, function() {
-                    console.log('Game '+ game.id +' joined by: '+ socket.id);
-                    game.playerAmount++;
-                    io.sockets.emit('runningGames', clientDisplay.gamesList(runningGames));
-                });
-            } else {
-                console.log('Game '+ game.id +' join failed by: '+ socket.id);
-            }  
-        }
 
         //console.log(io.sockets.manager.roomClients[socket.id]);
 
