@@ -13,7 +13,11 @@
 .km-ssEdit:after,
 .km-ssEdit:before{
         content: "\e07b";
-    }
+}
+.km-ssLock:after,
+.km-ssLock:before{
+        content: "\e0ff";
+}
 
 /* GAME LIST VIEW */
 .gameTitle,
