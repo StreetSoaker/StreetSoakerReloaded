@@ -36,34 +36,37 @@ function deviceReady() {
 	}
 
 
-	draweropen = false;
+	// draweropen = false;
 
-	function onDrawerShow() {
-		draweropen = true;
-		document.addEventListener("backbutton", onBackKeyDown, false);
-	}
+	// function onDrawerShow() {
+	// 	draweropen = true;
+	// 	document.addEventListener("backbutton", onBackKeyDown, false);
+	// }
 
-	function onDrawerHide() {
-		draweropen = false;
-		document.removeEventListener("backbutton", onBackKeyDown, false);
-	}
+	// function onDrawerHide() {
+	// 	draweropen = false;
+	// 	document.removeEventListener("backbutton", onBackKeyDown, false);
+	// }
 
-	function onBackKeyDown(event) {
-		$("#left-drawer").data("kendoMobileDrawer").hide();
-		draweropen = false;
-		event.preventDefault();
-		return false;
-	}
+	// function onBackKeyDown(event) {
+	// 	$("#left-drawer").data("kendoMobileDrawer").hide();
+	// 	draweropen = false;
+	// 	event.preventDefault();
+	// 	return false;
+	// }
 	
-	document.addEventListener("menubutton", onMenuKeyDown, false);
+	// document.addEventListener("menubutton", onMenuKeyDown, false);
 
-	function onMenuKeyDown() {
-		if (draweropen === true) {
-			draweropen = false;
-			$("#left-drawer").data("kendoMobileDrawer").hide();
-		} else {
-			draweropen = true;
-			$("#left-drawer").data("kendoMobileDrawer").show();
-		}
-	}
+	// function onMenuKeyDown() {
+	// 	if (draweropen === true) {
+	// 		draweropen = false;
+	// 		$("#left-drawer").data("kendoMobileDrawer").hide();
+	// 	} else {
+	// 		draweropen = true;
+	// 		$("#left-drawer").data("kendoMobileDrawer").show();
+	// 	}
+	// }
 }
+$(document).ready(function() {
+	deviceReady();
+});

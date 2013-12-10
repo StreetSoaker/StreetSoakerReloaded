@@ -19,6 +19,9 @@
 
         <!-- Kendo 2013.3.1119 -->
         <script src="js/kendo.mobile.min.js"></script>
+        
+        <!-- Google Maps -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEsqx3E9ITguWtbjptJCm6QkIs4fra4Fo&sensor=true"></script>
 
         <!-- StreetSoaker App -->
         <script src="js/streetsoaker.app.js"></script>
@@ -73,35 +76,7 @@
                     <span data-role="view-title">Game List </span>
                 </div>
             </header>
-            <ul data-role="listview" data-style="inset" data-type="group">
-                <li>
-                    Public
-                    <ul>
-                        <li data-icon="globe"><a><span class="gameTitle">GERRY HIERO</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></span></a></li>
-                        <li data-icon="globe"><a><span class="gameTitle">nanana</span><span class="gameMode">TDM</span><span class="gamePlayers">10/25</span></a></li>
-                        <li data-icon="globe"><a><span class="gameTitle">md2a</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="globe"><a><span class="gameTitle">Game 1111</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="globe"><a><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="globe"><a><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="globe"><a><span class="gameTitle">Henk gaat verliezen nananananana</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="globe"><a><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
-                    </ul>
-                </li>
-                <li>
-                    Private
-                    <ul>
-                        <li data-icon="organize"><a><span class="gameTitle">GERRY HIERO</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">nanana</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">md2a</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">niet joinen</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">Game 1111</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">Henk gaat verliezen</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">Yolo game</span><span class="gameMode">TDM</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">DBJDJJDHD</span><span class="gameMode">CTF</span><span class="gamePlayers">0/25</span></a></li>
-                        <li data-icon="organize"><a><span class="gameTitle">GOGOGO</span><span class="gameMode">PRO</span><span class="gamePlayers">0/25</span></a></li>
-                    </ul>
-                </li>
-            </ul>
+            <ul id="gameListView"></ul>
         </div>
 
         <!-- Game History View -->
@@ -229,8 +204,7 @@
            }
         </script>
 
-         <!-- Google Maps -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEsqx3E9ITguWtbjptJCm6QkIs4fra4Fo&sensor=true"></script>
+        
 
         <!-- PhoneGap Local Script -->
         <script src="phonegap.js"></script>
