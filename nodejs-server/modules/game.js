@@ -59,34 +59,15 @@ exports.join = function(gameID, socket) {
     //Check if room exists
 
 	if(Object.keys(io.sockets.manager.roomClients[socket.id]).length < 2) {
-		if(io.sockets.clients(gameID).length == 0) {
-
-			console.log(game);
-		    //Make game
-		    runningGames[gameID] = new game(gameID);
-
-		    //Join the room
-		    if(chechPossibility(runningGames[gameID].id, socket)) {
-		        socket.join(runningGames[gameID].id, function() {
-		            runningGames[gameID].playerAmount++;
-
-		        });
-		    }
-
-		    console.log('Game ['+ runningGames[gameID].id +'] made and joined by: '+ socket.id);
-		} else {
-		    // Join the room for this game if possible
-		    if(chechPossibility(runningGames[gameID].id, socket)) {
-		        socket.join(runningGames[gameID].id, function() {
-		            console.log('Game '+ runningGames[gameID].id +' joined by: '+ socket.id);
-		            runningGames[gameID].playerAmount++;
-		        });
-		    } else {
-		        console.log('Game '+ runningGames[gameID].id +' join failed by: '+ socket.id);
-		    }  
-		}
-	} else {
-		 console.log('Game '+ runningGames[gameID].id +' join failed by: '+ socket.id);
+	    // Join the room for this game if possible
+	    if(chechPossibility(runningGames[gameID].id, socket)) {
+	        socket.join(runningGames[gameID].id, function() {
+	            console.log('Game '+ runningGames[gameID].id +' joined by: '+ socket.id);
+	            runningGames[gameID].playerAmount++;
+	        });
+	    } else {
+	        console.log('Game '+ runningGames[gameID].id +' join failed by: '+ socket.id);
+	    }  
 	}
 }
 

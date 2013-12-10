@@ -10,8 +10,8 @@ io.sockets.on('connection', function (socket) {
     clientConnect.start(socket);
 
     //Return games on clients request
-    socket.on('getGames', function(loadServer) { 
-        socket.emit('gamesObject', runningGames);
+    socket.on('getGames', function(name, fn) { 
+       fn(runningGames);
     });
 
     // Player requests to join a game

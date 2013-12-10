@@ -6,8 +6,7 @@ socket.on('connect', function () {
 	});
 
 	// Get game list
-	socket.emit('getGames');
-	socket.on('gamesObject', function(data){
+	socket.emit('getGames', '', function(data){
 		for(i in data) {
 			$('#currentGames').append('<tr class="' + i + '"><td>' + i + '</td><td>' + data[i].name + '</td><td>' + data[i].playerAmount + '/' + data[i].maxPlayers + '</td><td><a href="#' + i + '" onClick="socket.emit(\'joinGame\', ' + i + ');">Join</a></td></tr>');
 		}
