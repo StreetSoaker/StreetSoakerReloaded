@@ -1,7 +1,7 @@
-var game = exports.game = function(id) {
+var game = exports.game = function() {
 	var this_ = this;
 
-	this.id 				= id;
+	this.id 				= null;
 	this.private			= 0;
 	this.password			= '';
 	this.radius				= 500;
@@ -24,7 +24,9 @@ var game = exports.game = function(id) {
 	}
 }
 
-exports.game.prototype._configGame = function(private, password, radius, name, lat, long, gamemode, maxPlayers) {
+exports.game.prototype._configGame = function(private, password, radius, name, lat, long, gamemode, maxPlayers, fn) {
+	var this_ = this;
+
 	this.private	= private;
 	this.password	= (password.length > 0) ? "'"+password+"'" : "NULL";
 	this.radius		= radius;
@@ -40,9 +42,11 @@ exports.game.prototype._configGame = function(private, password, radius, name, l
 	this.startTime = d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
 
 	// Add game to db
-	mysql_connection.query("INSERT INTO `games` VALUES('', "+ this.private +", "+ this.password +", "+ this.gamemode +", '"+ this.name +"', "+ this.lat +", "+ this.long +", "+ this.radius +", "+ this.maxPlayers +", '"+ this.startTime +"', NULL)", function(err, rows, fields) {
-	if (err) throw err;
+	mysql_connection.query("INSERT INTO `games` VALUES('', "+ this.private +", "+ this.password +", "+ this.gamemode +", '"+ this.name +"', "+ this.lat +", "+ this.long +", "+ this.radius +", "+ this.maxPlayers +", '"+ this.startTime +"', NULL)", function(err, result) {
+		if (err) throw err;
+		this_.id = result.insertId;
 
+		fn('succes');
 	});
 }
 
@@ -56,8 +60,6 @@ exports.game.prototype._destroyGame = function() {
 }
 
 exports.join = function(gameID, socket) {
-    //Check if room exists
-
 	if(Object.keys(io.sockets.manager.roomClients[socket.id]).length < 2) {
 	    // Join the room for this game if possible
 	    if(chechPossibility(runningGames[gameID].id, socket)) {
@@ -72,7 +74,6 @@ exports.join = function(gameID, socket) {
 }
 
 exports.leave = function(socket) {
-	console.log(io.sockets.manager.roomClients[socket.id]);
 	for(i in io.sockets.manager.roomClients[socket.id]) {
 	    if(i.substr(1)) {
 	        if(socket.leave(i)) {
