@@ -56,24 +56,35 @@
 .km-root .settings .km-listview label{
     color: #999;
 }
-
-.km-root .km-pane .km-view.settings .km-listview input{
+.km-root .km-pane .km-view .km-listview select,
+.km-root .km-pane .km-view .km-listview input{
     position: relative;
     width: 100%;
     right: 0;
     margin-top: 0;
     top: 0;
 }
+.active{
+    background-color: rgba(40, 40, 40, 0.1) !important;
+}
 
-.km-root .km-root .km-view.settings .km-listview input{
+.description{
+    font-size: 75%;
+}
+
+.km-root .km-root .km-view .km-listview select,
+.km-root .km-root .km-view .km-listview input{
     margin-top: .2em;
 }
 
-.km-root .km-root .km-view.settings .km-listview input,
-.km-root .km-root .km-view.settings .km-listview input{
+.km-root .km-root .km-view .km-listview select,
+.km-root .km-root .km-view .km-listview input{
     padding: .4em 0;
 }
 
+.km-root .km-root .km-view .km-listview select option:disabled{
+    color: rgba(0, 0, 0, 0.3) !important;
+}
 
 /* STYLE */
 .km-root .km-view .km-navbar {
@@ -88,7 +99,28 @@
 .km-root .km-view .km-content .km-list .km-state-active .km-listview-link {
     background-color: rgb(201, 0, 0);
 }
-.km-root .km-view .km-navbar .km-button.km-state-active {
+.km-root .km-view .km-navbar .km-button.km-state-active,
+.km-button:active,
+.km-flat .km-loader,
+.km-flat .km-rowinsert,
+.km-flat .km-state-active,
+.km-flat .km-scroller-pull,
+.km-flat .k-slider-selection, 
+.km-flat .km-touch-scrollbar, 
+.km-flat .km-pages .km-current-page, 
+.km-flat .k-slider .k-draghandle, 
+.km-flat .k-slider .k-draghandle:hover, 
+.km-flat .km-tabstrip .km-state-active, 
+.km-flat .km-scroller-refresh.km-load-more, 
+.km-flat .km-popup .k-state-hover, 
+.km-flat .km-popup .k-state-focused, 
+.km-flat .km-popup .k-state-selected, 
+.km-flat .km-actionsheet>li>a:active,
+.km-flat .km-actionsheet>li>a:hover,
+.km-flat li.km-state-active .km-listview-link,
+.km-flat li.km-state-active .km-listview-label,
+.km-flat .km-listview-label input[type=radio]:checked,
+.km-flat .km-listview-label input[type=checkbox]:checked{
     background-color: rgb(201, 0, 0);
 }
 

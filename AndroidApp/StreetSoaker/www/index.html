@@ -74,9 +74,58 @@
                 <div data-role="navbar">
                     <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
                     <span data-role="view-title">Game List </span>
+                    <a class="nav-button" data-align="right" href="addGame" data-role="button">Create</a>
                 </div>
             </header>
             <ul id="gameListView"></ul>
+        </div>
+        
+        
+        <!-- Game add -->
+        <div data-role="view" id="addGame" data-layout="mobile-view" data-title="Create Game">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title">Game List </span>
+                </div>
+            </header>
+            <form>
+                <ul data-role="listview" data-style="inset">
+                    <li>
+                        <label>Gamename
+                            <input type="text" class="active" />
+                        </label>
+                    </li>
+                    <li>
+                        <label>Password <span class="description">(When field is empty game is public)</span>
+                            <input type="text" class="active" />
+                        </label>
+                    </li>
+                    <li>
+                        <label>Game Mode
+                            <select class="active">
+                                <option value="1">FFA</option>
+                                <option value="2" disabled>TDM</option>
+                                <option value="3" disabled>CTF</option>
+                                <option value="4" disabled>DOM</option>
+                            </select>
+                        </label>
+                    </li>
+                    <li>
+                        <label>Max players
+                            <input type="number" class="active" value="25" />
+                        </label>
+                    </li>
+                    <li>
+                        <label>Game Radius <span class="description">(Meters)</span>
+                            <input type="number" class="active" value="1000" />
+                        </label>
+                    </li>
+                    <li>
+                        <i></i> <a data-role="button">Create game</a>
+                    </li>
+                </ul>
+            </form>
         </div>
 
         <!-- Game History View -->
