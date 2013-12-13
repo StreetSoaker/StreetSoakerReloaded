@@ -19,6 +19,7 @@ socket.on('connect', function() {
 
 					//Pass the games array to the datasource
 					options.success(games);
+					console.log('test merge github');
 				});
 			}
 		},
