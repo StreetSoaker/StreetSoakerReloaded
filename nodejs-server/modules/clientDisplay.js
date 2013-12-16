@@ -1,13 +1,13 @@
 exports.gameList = function() {
     var tempList = new Array();
-    for(i in runningGames) {
+    for(i in emitGames) {
         tempList.push({
-            'id':               runningGames[i].id,
-            'name':             runningGames[i].name,
-            'gameMode':         runningGames[i].gameMode,
-            'playerAmount':     runningGames[i].playerAmount,
-            'maxPlayers':       runningGames[i].maxPlayers,
-            'private':          runningGames[i].private
+            'id':               emitGames[i].id,
+            'name':             emitGames[i].name,
+            'gameMode':         emitGames[i].gameMode,
+            'playerAmount':     emitGames[i].playerAmount,
+            'maxPlayers':       emitGames[i].maxPlayers,
+            'private':          emitGames[i].private
         });
     }
 

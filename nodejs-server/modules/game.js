@@ -12,20 +12,11 @@ var game = exports.game = function() {
 	this.maxPlayers			= 24;
 	this.playerAmount		= 0;
 	this.startTime			= null;
-	this.playTime 			= 0;
-	this.playTimeInterval	= null;
-
-	this._startGame = function() {
-		this.playTimeInterval = setInterval(function() {
-			//exports.game.playTime++;
-			this_.playTime++;
-			//console.log(this_.id +': '+ this_.playTime +' s');
-		}, 1000);
-	}
 }
 
 exports.game.prototype._configGame = function(private, password, radius, name, lat, long, gamemode, maxPlayers, fn) {
 	var this_ = this;
+	var fn = fn;
 
 	this.private	= private;
 	this.password	= (password.length > 0) ? "'"+password+"'" : "NULL";
@@ -35,7 +26,6 @@ exports.game.prototype._configGame = function(private, password, radius, name, l
 	this.long 		= long;
 	this.gamemode 	= gamemode;
 	this.maxPlayers = maxPlayers;
-	this._startGame();
 
 	//Set Start Time
 	var d = new Date();
@@ -50,27 +40,20 @@ exports.game.prototype._configGame = function(private, password, radius, name, l
 	});
 }
 
-exports.game.prototype._clearPlayTime = function() {
-	clearInterval(this.playTimeInterval);
-	this.playTime = 0;
-}
+exports.join = function(gameID, password, socket, fn) {
+	var error = checkPossibility(runningGames[gameID].id, password, socket);
+    // Join the room for this game if possible
+    if(!error) {
+        socket.join(gameID, function() {
+            console.log('Game '+ gameID +' joined by: '+ socket.id);
+            runningGames[gameID].playerAmount++;
+        });
+    } else {
+        console.log('Game '+ runningGames[gameID].id +' join failed by: '+ socket.id);
+    }
 
-exports.game.prototype._destroyGame = function() {
-	this._clearPlayTime();
-}
-
-exports.join = function(gameID, socket) {
-	if(Object.keys(io.sockets.manager.roomClients[socket.id]).length < 2) {
-	    // Join the room for this game if possible
-	    if(chechPossibility(runningGames[gameID].id, socket)) {
-	        socket.join(runningGames[gameID].id, function() {
-	            console.log('Game '+ runningGames[gameID].id +' joined by: '+ socket.id);
-	            runningGames[gameID].playerAmount++;
-	        });
-	    } else {
-	        console.log('Game '+ runningGames[gameID].id +' join failed by: '+ socket.id);
-	    }  
-	}
+    // Return error or false
+    fn(error);
 }
 
 exports.leave = function(socket) {
@@ -79,29 +62,37 @@ exports.leave = function(socket) {
 	        if(socket.leave(i)) {
 	        	console.log(i.substr(1));
 	            if(runningGames[i.substr(1)].playerAmount < 2) {
-	                runningGames[i.substr(1)]._clearPlayTime;
 	                runningGames[i.substr(1)].playerAmount--;
 	            } else {
 	                runningGames[i.substr(1)].playerAmount--;
 	            }
-	            io.sockets.emit('gamesObject', runningGames);
 	        }
 	    }
 	}
 }
 
-var chechPossibility = function(gameID, socket) {
+var checkPossibility = function(gameID, password, socket) {
 	socketID 			= socket.id
 	var rooms 			= io.sockets.manager.rooms;
 	var playerAmount 	= runningGames[gameID].playerAmount;
 	var maxPlayerAmount = runningGames[gameID].maxPlayerAmount;
-	var bool = true;
+	var bool  = true;
+	var error = false;
+
 	for(key in rooms) {
 		if(key.substr(1) == gameID) {
 			for(i in rooms[key]) {
 				if(rooms[key][i] == socketID) {
-					bool = false;
+					if(bool)
+						bool = false;
+					error = 'Game already joined.';
 				}
+			}
+			
+			if(runningGames[gameID].password !== password) {
+				if(bool)
+					bool = false;
+				error = 'Wrong password.';
 			}
 		}
 	}
@@ -109,8 +100,9 @@ var chechPossibility = function(gameID, socket) {
 	if(bool) {
 		if(playerAmount >= maxPlayerAmount) {
 			bool = false;
+			error = 'The game is full.';
 		}
 	}
 
-	return bool;
+	return error;
 }

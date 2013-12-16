@@ -24,10 +24,10 @@ io.sockets.on('connection', function (socket) {
     * @return Object Gamelist for the app
     */
     socket.on('getGames', function(name, fn) { 
-        /*
+        /**
         * @return Object Gamelist for the app
         */
-        fn(clientDisplay.gameList());
+        fn(emitGames);
     });
 
 
@@ -40,7 +40,7 @@ io.sockets.on('connection', function (socket) {
     * @return                      (See todo)
     * @todo Decide what to return when the client joins a game
     */
-    socket.on('joinGame', function(gameID, fn) {
+    socket.on('joinGame', function(gameID, password, fn) {
         //Log request in console
         console.log('Requests to join/make game id: ' + gameID + ' by ' + socket.id);
         
@@ -49,7 +49,15 @@ io.sockets.on('connection', function (socket) {
          * @param INT gameID ID of the game that should be joined
          * @param Object socket Client's object
          */
-        gamefile.join(gameID, socket);
+        gamefile.join(gameID, password, socket, function(error) {
+            /*
+             * Can return anything we need when te client joins
+             */
+            if(!error)
+                fn(error, emitGames[gameID]);
+            else
+                fn(error);
+        });
 
         //console.log(io.sockets.manager.roomClients[socket.id]);
 
@@ -70,10 +78,6 @@ io.sockets.on('connection', function (socket) {
         //     runningGames[game.id]._clearPlayTime();
         // });
 
-        /*
-         * Can return anything we need when te client joins
-         */
-        fn(runningGames);
     });
 
 
@@ -125,7 +129,7 @@ io.sockets.on('connection', function (socket) {
             1,                              // private
             '',                             // password
             300,                            // radius
-            'Test 14 van de 100',           // name
+            'Test 18 van de 100',           // name
             2.12344,                        // latitude
             51.12345,                       // longitude
             1,                              // gamemode
@@ -135,10 +139,12 @@ io.sockets.on('connection', function (socket) {
                 runningGames[tempGame.id] = tempGame;
 
                 // Create and join room for game with the client
-                gamefile.join(tempGame.id, socket);
+                gamefile.join(tempGame.id, '', socket, function(result) {
 
-                // Return game ID to client
-                fn(tempGame.id);
+                    // Return game ID to client
+                    fn(result);
+                });
+
             }
         );
     })

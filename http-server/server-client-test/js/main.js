@@ -13,8 +13,9 @@ socket.on('connect', function () {
 
 function displayList(data) {
 	$('#currentGames').html('');
+	//console.log(data);
 	for(i in data) {
-		$('#currentGames').append('<tr class="' + i + '"><td>' + i + '</td><td>' + data[i].name + '</td><td>' + data[i].playerAmount + '/' + data[i].maxPlayers + '</td><td><a href="#' + i + '" onClick="socket.emit(\'joinGame\', ' + i + ', function(data) { displayList(data); });">Join</a></td></tr>');
+		$('#currentGames').append('<tr class="' + i + '"><td>' + i + '</td><td>' + data[i].name + '</td><td>' + data[i].playerAmount + '/' + data[i].maxPlayers + '</td><td><a href="#' + i + '" onClick="socket.emit(\'joinGame\', ' + i + ', \'\', function(data) { displayList(data); });">Join</a></td></tr>');
 	}
 }
 
