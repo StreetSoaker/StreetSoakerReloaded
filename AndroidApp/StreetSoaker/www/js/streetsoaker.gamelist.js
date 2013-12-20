@@ -36,7 +36,12 @@ socket.on('connect', function() {
 		style: "inset",
 		template: '#if(private == "Public"){# <a data-icon="globe"> #}else{#  <a data-icon="ssLock"> #}# <span class="gameTitle">#: name #</span><span class="gameMode">#: gameMode #</span><span class="gamePlayers">#: playerAmount #/#: maxPlayers #</span></a>',
 		click: function(e) {
-			joinGame(e.dataItem.id);
+			if (e.dataItem.private == 'Private'){
+				//open modalview
+			} else {
+				joinGame(e.dataItem.id, '');
+			}
+			
 		}
 	});
 });

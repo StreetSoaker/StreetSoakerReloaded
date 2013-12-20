@@ -36,6 +36,17 @@ function deviceReady() {
 	}
 
 
+	function joinGame(id, password) {
+		socket.emit('joinGame', {id: id, password: password}, function(data) {
+			if (!data.error) {
+				
+			} else {
+				alert(data.error);
+			}
+		});
+	}
+
+
 	// draweropen = false;
 
 	// function onDrawerShow() {
@@ -67,6 +78,9 @@ function deviceReady() {
 	// 	}
 	// }
 }
+
+
 $(document).ready(function() {
 	deviceReady();
 });
+
