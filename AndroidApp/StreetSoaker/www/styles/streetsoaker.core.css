@@ -18,6 +18,10 @@
 .km-ssLock:before{
         content: "\e0ff";
 }
+.km-ssList:after,
+.km-ssList:before{
+        content: "\e0f1";
+}
 
 /* GAME LIST VIEW */
 .gameTitle,
