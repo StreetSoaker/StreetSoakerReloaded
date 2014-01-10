@@ -18,12 +18,12 @@ function deviceReady() {
 		timeout: 50000,
 		enableHighAccuracy: true
 	};
-	
+
 	watchID = navigator.geolocation.watchPosition(onSuccess, onError, locationOptions);
 
 	function onSuccess(position) {
 		var playerLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-		
+
 		var playerMarker = new google.maps.Marker({
 				position: playerLocation,
 				map: map,
@@ -33,17 +33,6 @@ function deviceReady() {
 
 	function onError(error) {
 		alert('code: '+ error.code+'\n'+'message:'+error.message+'\n');
-	}
-
-
-	function joinGame(id, password) {
-		socket.emit('joinGame', {id: id, password: password}, function(data) {
-			if (!data.error) {
-				
-			} else {
-				alert(data.error);
-			}
-		});
 	}
 
 
@@ -65,7 +54,7 @@ function deviceReady() {
 	// 	event.preventDefault();
 	// 	return false;
 	// }
-	
+
 	// document.addEventListener("menubutton", onMenuKeyDown, false);
 
 	// function onMenuKeyDown() {

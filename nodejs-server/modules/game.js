@@ -12,7 +12,7 @@ var game = exports.game = function() {
 	this.maxPlayers			= 24;
 	this.playerAmount		= 0;
 	this.startTime			= null;
-}
+};
 
 exports.game.prototype._configGame = function(id, private, password, radius, name, lat, long, gamemode, maxPlayers, fn) {
 	var this_ = this;

@@ -4,13 +4,13 @@
         <title>StreetSoaker</title>
         <meta charset="utf-8" />
         <meta name="format-detection" content="teleaphone=no" />
-        
+
         <!-- Kendo UI -->
         <link href="styles/kendo.mobile.all.min.css" rel="stylesheet" />
 
         <!-- StreetSoaker App -->
         <link href="styles/streetsoaker.core.css" rel="stylesheet" />
-        
+
         <!-- jQuery 2.0.3 -->
         <script src="js/jquery.min.js"></script>
 
@@ -19,7 +19,7 @@
 
         <!-- Kendo 2013.3.1119 -->
         <script src="js/kendo.mobile.min.js"></script>
-        
+
         <!-- Google Maps -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEsqx3E9ITguWtbjptJCm6QkIs4fra4Fo&sensor=true"></script>
 
@@ -27,7 +27,7 @@
         <script src="js/streetsoaker.app.js"></script>
         <script src="js/streetsoaker.buttons.js"></script>
         <script src="js/streetsoaker.gamelist.js"></script>
-        
+
     </head>
     <body>
         <!-- Login View -->
@@ -54,7 +54,7 @@
             <a data-click="closeModalView" data-role="button" href="#index">Done</a>
        </div>
 
-            
+
         <!-- Index view -->
         <div data-role="view" id="index" data-title="StreetSoaker" data-stretch="true">
             <header data-role="header">
@@ -67,7 +67,7 @@
             <div id="mapView"></div>
         </div>
 
-        <!-- GAME(S) --> 
+        <!-- GAME(S) -->
         <!-- Game List View -->
         <div data-role="view" id="gameList" data-layout="mobile-view" data-title="Game List">
             <header data-role="header">
@@ -79,8 +79,8 @@
             </header>
             <ul id="gameListView"></ul>
         </div>
-        
-        
+
+
         <!-- Game add -->
         <div data-role="view" id="addGame" data-layout="mobile-view" data-title="Create Game">
             <header data-role="header">
@@ -173,7 +173,7 @@
                 <li>flipppo</li>
                 <li>flippie</li>
                 <li>dummmykind</li>
-                
+
             </ul>
         </div>
 
@@ -246,7 +246,7 @@
             new kendo.mobile.Application($(document.body), {
                 skin: "flat"
             });
-             
+
            function closeModalView(e) {
                // find the closest modal view, relative to the button element.
                var modalView = e.sender.element.closest("[data-role=modalview]").data("kendoMobileModalView");
@@ -254,7 +254,7 @@
            }
         </script>
 
-        
+
 
         <!-- PhoneGap Local Script -->
         <script src="phonegap.js"></script>
