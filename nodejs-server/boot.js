@@ -27,7 +27,7 @@ io.sockets.on('connection', function (socket) {
         /**
         * @return Object Gamelist for the app
         */
-        fn(emitGames);
+        fn(runningGames);
     });
 
 
@@ -41,22 +41,19 @@ io.sockets.on('connection', function (socket) {
     * @todo Decide what to return when the client joins a game
     */
     socket.on('joinGame', function(gameID, password, fn) {
+        console.log(gameID);
         //Log request in console
         console.log('Requests to join/make game id: ' + gameID + ' by ' + socket.id);
         
-        /*
-         * @method join
-         * @param INT gameID ID of the game that should be joined
-         * @param Object socket Client's object
-         */
+        // Join game
         gamefile.join(gameID, password, socket, function(error) {
             /*
              * Can return anything we need when te client joins
              */
-            if(!error)
-                fn(error, emitGames[gameID]);
+            if(error === false)
+                fn({'game': runningGames[gameID]});
             else
-                fn(error);
+                fn({'error': error});
         });
 
         //console.log(io.sockets.manager.roomClients[socket.id]);
@@ -112,7 +109,7 @@ io.sockets.on('connection', function (socket) {
         /**
          * Config game object with given info
          *
-         * @method  _configGame
+         * @method  _startGame
          * @param   BOOL      private     Defines if the game is private or not
          * @param   STRING    password    Password for the game, requered if `private` is TRUE
          * @param   INT       radius      Defines the size of the playfield
@@ -125,21 +122,21 @@ io.sockets.on('connection', function (socket) {
          * @todo                          (See return)
          * @return  ?        ?            What to do when te game is made
          */
-        tempGame._configGame(
-            1,                              // private
-            '',                             // password
-            300,                            // radius
-            'Test 18 van de 100',           // name
-            2.12344,                        // latitude
-            51.12345,                       // longitude
-            1,                              // gamemode
-            42,                             // maxPlayers
+        tempGame._startGame(
+            private,
+            password,
+            radius,
+            name,
+            lat,
+            long,
+            gamemode,
+            maxPlayers,
             function() {                    // callback function
                 // Add game to running games
                 runningGames[tempGame.id] = tempGame;
 
                 // Create and join room for game with the client
-                gamefile.join(tempGame.id, '', socket, function(result) {
+                gamefile.join(tempGame.id, password, socket, function(result) {
 
                     // Return game ID to client
                     fn(result);

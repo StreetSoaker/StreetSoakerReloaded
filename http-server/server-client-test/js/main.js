@@ -22,7 +22,7 @@ function displayList(data) {
 $(document).ready(function() {
 	$('#joinGameForm').on('submit', function(event) {
 		var gameID = $('#joinGameForm input[type="text"]').val();
-		socket.emit('joinGame', gameID, function(data) { displayList(data); });
+		socket.emit('joinGame', '42', gameID, function(data) { console.log(data); });
 
 		event.preventDefault;
 	});
