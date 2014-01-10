@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
     $('#settingsEdit').click(function(){
         alert();
         $('.editable').prop('disabled', false);
@@ -10,7 +10,8 @@ $(document).ready(function(){
         alert();
         $('.editable').prop('disabled', true);
         $('.editable').css({'background' : 'none'});
-        $('#settingsEdit').show();        
+        $('#settingsEdit').show();
     });
-    
+
+
 });

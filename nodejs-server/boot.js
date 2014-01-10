@@ -23,7 +23,7 @@ io.sockets.on('connection', function (socket) {
     * @method gameList
     * @return Object Gamelist for the app
     */
-    socket.on('getGames', function(name, fn) { 
+    socket.on('getGames', function(name, fn) {
         /**
         * @return Object Gamelist for the app
         */
@@ -105,7 +105,7 @@ io.sockets.on('connection', function (socket) {
         gamemode,
         maxPlayers,
         fn
-    ){
+    ) {
         // Generate new game object
         var tempGame = new gamefile.game();
 
@@ -147,7 +147,7 @@ io.sockets.on('connection', function (socket) {
 
             }
         );
-    })
+    });
 
 
     /**

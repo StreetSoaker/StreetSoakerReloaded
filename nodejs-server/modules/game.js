@@ -12,7 +12,7 @@ var game = exports.game = function() {
 	this.maxPlayers			= 24;
 	this.playerAmount		= 0;
 	this.startTime			= null;
-}
+};
 
 exports.game.prototype._configGame = function(private, password, radius, name, lat, long, gamemode, maxPlayers, fn) {
 	var this_ = this;
@@ -38,50 +38,50 @@ exports.game.prototype._configGame = function(private, password, radius, name, l
 
 		fn('succes');
 	});
-}
+};
 
 exports.join = function(gameID, password, socket, fn) {
 	var error = checkPossibility(runningGames[gameID].id, password, socket);
-    // Join the room for this game if possible
-    if(!error) {
-        socket.join(gameID, function() {
-            console.log('Game '+ gameID +' joined by: '+ socket.id);
-            runningGames[gameID].playerAmount++;
-        });
-    } else {
-        console.log('Game '+ runningGames[gameID].id +' join failed by: '+ socket.id);
-    }
+	// Join the room for this game if possible
+	if(!error) {
+		socket.join(gameID, function() {
+			console.log('Game '+ gameID +' joined by: '+ socket.id);
+			runningGames[gameID].playerAmount++;
+		});
+	} else {
+		console.log('Game '+ runningGames[gameID].id +' join failed by: '+ socket.id);
+	}
 
-    // Return error or false
-    fn(error);
-}
+	// Return error or false
+	fn(error);
+};
 
 exports.leave = function(socket) {
-	for(i in io.sockets.manager.roomClients[socket.id]) {
-	    if(i.substr(1)) {
-	        if(socket.leave(i)) {
-	        	console.log(i.substr(1));
-	            if(runningGames[i.substr(1)].playerAmount < 2) {
-	                runningGames[i.substr(1)].playerAmount--;
-	            } else {
-	                runningGames[i.substr(1)].playerAmount--;
-	            }
-	        }
-	    }
+	for(var i in io.sockets.manager.roomClients[socket.id]) {
+		if(i.substr(1)) {
+			if(socket.leave(i)) {
+				console.log(i.substr(1));
+				if(runningGames[i.substr(1)].playerAmount < 2) {
+					runningGames[i.substr(1)].playerAmount--;
+				} else {
+					runningGames[i.substr(1)].playerAmount--;
+				}
+			}
+		}
 	}
-}
+};
 
 var checkPossibility = function(gameID, password, socket) {
-	socketID 			= socket.id
-	var rooms 			= io.sockets.manager.rooms;
-	var playerAmount 	= runningGames[gameID].playerAmount;
+	socketID			= socket.id;
+	var rooms			= io.sockets.manager.rooms;
+	var playerAmount	= runningGames[gameID].playerAmount;
 	var maxPlayerAmount = runningGames[gameID].maxPlayerAmount;
 	var bool  = true;
 	var error = false;
 
-	for(key in rooms) {
+	for(var key in rooms) {
 		if(key.substr(1) == gameID) {
-			for(i in rooms[key]) {
+			for(var i in rooms[key]) {
 				if(rooms[key][i] == socketID) {
 					if(bool)
 						bool = false;
@@ -105,4 +105,4 @@ var checkPossibility = function(gameID, password, socket) {
 	}
 
 	return error;
-}
+};
