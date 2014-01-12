@@ -21,8 +21,9 @@ function deviceReady() {
 
 	watchID = navigator.geolocation.watchPosition(onSuccess, onError, locationOptions);
 
+	var playerLocation;
 	function onSuccess(position) {
-		var playerLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		playerLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
 		var playerMarker = new google.maps.Marker({
 				position: playerLocation,
@@ -32,7 +33,7 @@ function deviceReady() {
 	}
 
 	function onError(error) {
-		alert('code: '+ error.code+'\n'+'message:'+error.message+'\n');
+		//alert('code: '+ error.code+'\n'+'message:'+error.message+'\n');
 	}
 
 
@@ -69,7 +70,7 @@ function deviceReady() {
 }
 
 
-$(document).ready(function() {
+$(window).ready(function() {
 	deviceReady();
 });
 

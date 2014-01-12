@@ -4,7 +4,7 @@
 * @author	Koen van den Heuvel
 */
 
-socket.on('connect', function() {
+socket.on('connect', function() {    
 	//Datasource containing active games
 	var gameList = new kendo.data.DataSource({
 		transport: {
@@ -50,7 +50,7 @@ socket.on('connect', function() {
 
 	function joinGame(id, private) {
 		if(private == 'Private') {
-
+			password = prompt('Password');
 		} else {
 			password = '';
 		}
@@ -66,20 +66,27 @@ socket.on('connect', function() {
     }
 
     function initGame(game) {
+    	// Fixes bug that the map isn't fulL screen
+		setTimeout(function() { google.maps.event.trigger(map, "resize"); }, 500);
+
+		// Display map
 		window.location = "#index";
+
 		var gamemarker = new google.maps.Marker({
 			map: map,
 			position: new google.maps.LatLng(game.lat, game.long),
-			title: 'Some location'
+			title: game.name
 		});
 
 		// Add circle overlay and bind to marker
 		var circle = new google.maps.Circle({
 			map: map,
-			radius: 300,    // 10 miles in metres
+			radius: game.radius,    // 10 miles in metres
 			fillColor: '#AA0000'
 		});
 
 		circle.bindTo('center', gamemarker, 'position');
+
+		map.panTo(gamemarker.marker.getPosition());
 	}
 });

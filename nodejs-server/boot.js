@@ -9,7 +9,12 @@ var clientConnect   = require('./modules/clientConnect.js');
 var clientDisplay   = require('./modules/clientDisplay.js');
 var gamefile        = require('./modules/game.js');
 
+// Disable debug logs
+// io.set('log level', 1);
+
 io.sockets.on('connection', function (socket) {
+    // Set var
+    socket.set('lastKnownLocation', {});
 
     /**
     * @param Object socket Starts checking the user
@@ -144,6 +149,14 @@ io.sockets.on('connection', function (socket) {
 
             }
         );
+    });
+
+
+    /**
+    *  Client leaves the app/game
+    */
+    socket.on('latestLocation', function(location) {
+        socket.lastKnownLocation = location;
     });
 
 

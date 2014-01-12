@@ -23,11 +23,6 @@
         <!-- Google Maps -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEsqx3E9ITguWtbjptJCm6QkIs4fra4Fo&sensor=true"></script>
 
-        <!-- StreetSoaker App -->
-        <script src="js/streetsoaker.app.js"></script>
-        <script src="js/streetsoaker.buttons.js"></script>
-        <script src="js/streetsoaker.gamelist.js"></script>
-
     </head>
     <body>
         <!-- Login View -->
@@ -61,6 +56,7 @@
                 <div data-role="navbar">
                     <a data-role="button" data-rel="drawer" href="#left-drawer" data-icon="more" data-align="left"></a>
                     <span data-role="view-title">StreetSoaker</span>
+                    <span id="timer" data-align="right"><span id="time">215</span> seconds</span>
                     <a data-role="button" data-rel="drawer" href="#right-drawer" data-icon="info" data-align="right"></a>
                 </div>
             </header>
@@ -212,7 +208,7 @@
                     Games
                     <ul>
                         <li data-icon="globe"><a href="index">Map View</a></li>
-                        <li data-icon="ssList"><a href="gameList">Game List</a></li>
+                        <li data-icon="ssList"><a href="gameList" id="gameListButton">Game List</a></li>
                         <li data-icon="history"><a href="gameHistory">Game History</a></li>
                     </ul>
                 </li>
@@ -261,5 +257,11 @@
 
         <!-- Cordova testing script -->
         <script src="js/cordova.js"></script>
+
+        <!-- StreetSoaker App -->
+        <script src="js/streetsoaker.app.js"></script>
+        <script src="js/streetsoaker.buttons.js"></script>
+        <script src="js/streetsoaker.gamelist.js"></script>
+        <script src="js/streetsoaker.game.js"></script>
     </body>
 </html>
