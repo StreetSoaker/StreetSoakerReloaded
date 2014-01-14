@@ -1,3 +1,8 @@
+/**
+* Changes the input when some touch the edit button
+*
+* @author	Joeri Aben
+*/
 $(document).ready(function(){
 
     $('#settingsEdit').click(function(){
